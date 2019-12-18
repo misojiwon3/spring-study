@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+<!--	<bean id="boardDao" class="ioc2.board.BoardDAOJDBC"/>-->
+
+	<context:component-scan base-package="ioc2"/>
+
+	<aop:aspectj-autoproxy/>
+	
+	<!-- DataSource 등록 -->
+<!--	<context:property-placeholder location="classpath:jdbc.properties"/>-->
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="org.mariadb.jdbc.Driver"/>
+		<property name="url" value="jdbc:mariadb://localhost:3306/spring_test"/>
+		<property name="username" value="hanseung"/>
+		<property name="password" value="dlgkstmd3"/>
+	</bean>
+	
+	<!-- JdbcTemplate 등록 -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 횡단관심에 해당하는 클래스를 등록한다. 
+	<bean id="log"            class="com.multicampus.biz.common.LogAdvice"></bean>
+	<bean id="afterReturning" class="com.multicampus.biz.common.AfterReturningAdvice"></bean>
+	<bean id="afterThrowing"  class="com.multicampus.biz.common.AfterThrowingAdvice"></bean>
+	<bean id="around"         class="com.multicampus.biz.common.AroundAdvice"></bean>
+	-->
+	
+	<!-- AOP 설정 
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* com.multicampus.biz..*Impl.*(..))"/>
+		<aop:pointcut id="getPointcut" expression="execution(* com.multicampus.biz..*Impl.get*(..))"/>
+		
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" method="printLog"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="around">
+			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+		</aop:aspect>
+	</aop:config>
+	-->
+<!-- 
+	<bean id="boardService" class="com.multicampus.biz.board.BoardServiceImpl">
+		<property name="boardDAO" ref="boardDAO"></property>
+	</bean>
+	
+	<bean id="boardDAO" class="com.multicampus.biz.board.BoardDAOJDBC"></bean>
+ -->
+</beans>
