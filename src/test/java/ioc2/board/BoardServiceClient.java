@@ -1,8 +1,8 @@
 package ioc2.board;
 
-import ioc2.board.BoardService;
-import ioc2.board.BoardVO;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
 
 public class BoardServiceClient {
 
@@ -23,9 +23,9 @@ public class BoardServiceClient {
 		vo.setContent("내용");
 		boardService.insertBoard(vo);
 		
-//		List<BoardVO> boardList = boardService.getBoardList(vo);
-//		for (BoardVO board : boardList) {
-//			System.out.println("---> " + board.toString());
-//		}
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		for (BoardVO board : boardList) {
+			System.out.println("---> " + board.toString());
+		}
 	}
 }

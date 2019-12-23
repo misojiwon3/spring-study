@@ -19,6 +19,11 @@
 	<logger name="org.springframework" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="console" />
-	</logger>   
+	</logger>
+
+	<logger name="java.sql" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
+	</logger>
 
 </log4j:configuration>

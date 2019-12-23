@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- id 는 컨테이너 내에서 unique 해야 함 -->
+
+	<typeAlias alias="user" type="mvc.business.user.UserVO"/>
+	
+	<resultMap class="user" id="userResult">
+		<result property="id" column="ID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="name" column="NAME"/>
+		<result property="role" column="ROLE"/>
+	</resultMap>
+
+	<insert id="insertUser" parameterClass="user">
+		INSERT INTO USERS (id, password, name, role)
+		VALUES (
+		#id#,
+		#password#,
+		#name#,
+		#role#
+		)
+	</insert>
+
+	<select id="getUser" parameterClass="user" resultClass="user">
+		SELECT *
+		FROM USERS
+		WHERE id = #id#
+	</select>
+
+	<select id="getUserList" resultMap="userResult">
+		SELECT *
+		FROM USERS
+		WHERE 1=1
+		<isNotEmpty prepend="AND" property="name">
+			name LIKE CONCAT('%', #name#, '%')
+		</isNotEmpty>
+		ORDER BY id DESC
+	</select>
+
+	<update id="updateUser" parameterClass="user">
+		UPDATE users
+		SET name = #name#
+		WHERE id = #id#
+	</update>
+
+	<delete id="deleteUser" parameterClass="user">
+		DELETE FROM users
+		WHERE id = #id#
+	</delete>
+
+</sqlMap>

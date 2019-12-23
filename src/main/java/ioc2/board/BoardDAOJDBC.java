@@ -1,7 +1,6 @@
 package ioc2.board;
 
 import ioc2.common.JDBCUtil;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
