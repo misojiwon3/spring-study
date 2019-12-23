@@ -9,13 +9,13 @@ import java.util.List;
 
 public class BoardServiceClient {
 
-	ClassPathXmlApplicationContext container =
+	private ClassPathXmlApplicationContext container =
 			new ClassPathXmlApplicationContext("business-layer.xml");
 
-	BoardService boardService =
+	private BoardService boardService =
 			(BoardService) container.getBean("boardService");
 
-	BoardVO board = new BoardVO();
+	private BoardVO board = new BoardVO();
 
 
 	public static void main(String[] args) {

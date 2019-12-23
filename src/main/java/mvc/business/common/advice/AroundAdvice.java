@@ -1,4 +1,4 @@
-package mvc.business.common.aspect;
+package mvc.business.common.advice;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -19,7 +19,7 @@ public class AroundAdvice {
         watch.start();
         obj = jp.proceed();
         watch.stop();
-        System.out.println(method + "() 메소드 처리에 소요된 시간 : " + watch.getTotalTimeMillis() + "ms");
+        System.out.println(method + "() : elapsed time => " + watch.getTotalTimeMillis() + "ms");
         return obj;
     }
 }

@@ -1,4 +1,4 @@
-package mvc.business.common.aspect;
+package mvc.business.common.advice;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -15,7 +15,7 @@ public class AfterThrowingAdvice {
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
 		String method = jp.getSignature().getName();
 
-		System.out.println("[예외 처리] " + method + "() 수행 중 발생한 예외 처리");
+		System.out.println("[Exception] " + method + "() 수행 중 발생한 예외 처리");
 
 		if (exceptObj instanceof IllegalArgumentException) {
 			System.out.println("IllegalArgumentException" + exceptObj.getMessage());
