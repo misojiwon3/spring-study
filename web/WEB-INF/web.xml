@@ -4,6 +4,21 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Listener 에 의해 loading 될 xml 을 명시 -->
+    <!-- (web.xml에 의해 Servlet Container 가 구동되면 listener 가 생성되고, listener 는 context-param 의 설정을 통해 Spring Container 생성 ) -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:business-layer.xml</param-value>
+    </context-param>
+
+    <!-- Listener (Pre Loading) -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <!-- Servlet (Lazy Loading) -->
     <servlet>
