@@ -67,7 +67,7 @@ public class BoardServiceClient {
 	@Test
 	public void deleteBoard() {
 		BoardVO vo = new BoardVO();
-		vo.setSeq(10);
+		vo.setSeq(1);
 
 		boardService.deleteBoard(vo);
 		System.out.println("success to delete board");
@@ -76,7 +76,7 @@ public class BoardServiceClient {
 	@Test
 	public void getBoard() {
 		BoardVO vo = new BoardVO();
-		vo.setSeq(4);
+		vo.setSeq(1);
 
 		boardService.getBoard(vo);
 		System.out.println("success to get board");
